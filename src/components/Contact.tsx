@@ -1,92 +1,99 @@
-import React, { useState, FormEvent } from 'react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Mail, Phone, MapPin, Languages } from 'lucide-react';
 
-export default function Contact() {
-  const [result, setResult] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-
-  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setIsLoading(true);
-    setResult('');
-    
-    const formData = new FormData(event.currentTarget);
-    formData.append('access_key', '795ba1e4-93b4-4885-a667-a726cebad788');
-
-    try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: formData
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        setResult('Form Submitted Successfully');
-        (event.target as HTMLFormElement).reset();
-      } else {
-        console.error('Error:', data);
-        setResult(data.message || 'Something went wrong');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      setResult('Failed to submit form');
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
+const Contact = () => {
   return (
-    <div className="max-w-md mx-auto p-6">
-      <form onSubmit={onSubmit} className="space-y-4">
-        <div>
-          <label htmlFor="name" className="block mb-2">Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            required
-            className="w-full p-2 border rounded"
-          />
-        </div>
-
-        <div>
-          <label htmlFor="email" className="block mb-2">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            required
-            className="w-full p-2 border rounded"
-          />
-        </div>
-
-        <div>
-          <label htmlFor="message" className="block mb-2">Message</label>
-          <textarea
-            id="message"
-            name="message"
-            required
-            rows={4}
-            className="w-full p-2 border rounded"
-          ></textarea>
-        </div>
-
-        <button
-          type="submit"
-          disabled={isLoading}
-          className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 disabled:opacity-50"
+    <div className="py-20 bg-gray-800 text-white">
+      <div className="container mx-auto px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
         >
-          {isLoading ? 'Sending...' : 'Submit Form'}
-        </button>
-      </form>
-      
-      {result && (
-        <p className={`mt-4 text-center ${
-          result.includes('Successfully') ? 'text-green-600' : 'text-red-600'
-        }`}>
-          {result}
-        </p>
-      )}
+          <h2 className="text-4xl font-bold mb-4">Get In Touch</h2>
+          <p className="text-gray-400">Let's connect and discuss opportunities</p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 gap-8">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="space-y-6"
+          >
+            <div className="flex items-center space-x-4">
+              <Mail className="w-6 h-6 text-blue-400" />
+              <div>
+                <h3 className="text-xl font-semibold">Email</h3>
+                <p className="text-gray-400">contact@example.com</p>
+              </div>
+            </div>
+
+            <div className="flex items-center space-x-4">
+              <Phone className="w-6 h-6 text-blue-400" />
+              <div>
+                <h3 className="text-xl font-semibold">Phone</h3>
+                <p className="text-gray-400">+1234567890</p>
+              </div>
+            </div>
+
+            <div className="flex items-center space-x-4">
+              <MapPin className="w-6 h-6 text-blue-400" />
+              <div>
+                <h3 className="text-xl font-semibold">Location</h3>
+                <p className="text-gray-400">Maharashtra, India</p>
+              </div>
+            </div>
+
+            <div className="flex items-center space-x-4">
+              <Languages className="w-6 h-6 text-blue-400" />
+              <div>
+                <h3 className="text-xl font-semibold">Languages</h3>
+                <p className="text-gray-400">English, Hindi, Marathi</p>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.form
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="space-y-4"
+          >
+            <div>
+              <input
+                type="text"
+                placeholder="Your Name"
+                className="w-full p-3 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              />
+            </div>
+            <div>
+              <input
+                type="email"
+                placeholder="Your Email"
+                className="w-full p-3 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              />
+            </div>
+            <div>
+              <textarea
+                placeholder="Your Message"
+                rows={4}
+                className="w-full p-3 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-blue-500 text-white py-3 px-6 rounded-lg hover:bg-blue-600 transition-colors"
+            >
+              Send Message
+            </button>
+          </motion.form>
+        </div>
+      </div>
     </div>
   );
-}
+};
+
+export default Contact;
