@@ -39,10 +39,10 @@ const Hero = () => {
 
             {/* Social links */}
             <div className="flex gap-4 justify-center lg:justify-start">
-              <a href="https://linkedin.com/in/jinesh-singatkar-1008js/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-400">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-400">
                 <Linkedin className="w-6 h-6" />
               </a>
-              <a href="https://github.com/JineshSingatkar" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-400">
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-400">
                 <Github className="w-6 h-6" />
               </a>
             </div>
@@ -57,5 +57,6 @@ const Hero = () => {
     </div>
   );
 };
+
 
 export default Hero;
