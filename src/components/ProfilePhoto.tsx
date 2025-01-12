@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { profileAnimations } from './animations';
+//import { someFunction } from './animations';
 import jineshPic from '../../assets/jinesh_pic.png';
 
 const ProfilePhoto: React.FC = () => {
