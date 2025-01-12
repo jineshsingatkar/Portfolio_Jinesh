@@ -6,7 +6,7 @@ import { ProfilePhoto } from './Profile';
 
 const Hero = () => {
   return (
-    <div className="min-h-screen bg-gray-900 text-white py-8 md:py-20">
+    <div className="min-h-screen bg-gray-900 text-white py-8 md:py-20" style={{ minHeight: '1vh' }}>
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left column: Personal info */}
